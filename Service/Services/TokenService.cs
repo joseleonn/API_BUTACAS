@@ -39,19 +39,51 @@ namespace Service.Services
             return token;
         }
 
-        public bool ValidateToken(string tok)
+        public TokenDTO ValidateToken(string tok)
         {
+         
 
         Tokens tokenExist = _context.Tokens.FirstOrDefault(u=> u.TokenCreated == tok);
 
             if (tokenExist!=null)
             {
-                return true;
+                List<Reservas> reservas = _context.Reservas.Where(u => u.TokenCreated == tok).ToList();
+
+                TokenDTO token = new TokenDTO
+                {
+                    TokenCreated = tokenExist.TokenCreated,
+                    AssignedTickets = tokenExist.AssignedTickets,
+                    UsedTickets = tokenExist.UsedTickets,
+                    Reservas = new List<ReservasDTO>()
+
+                };
+
+                foreach (var reserva in reservas)
+                {
+                    Butacas butaca = _context.Butacas.FirstOrDefault(b => b.IdButaca == reserva.IdButaca);
+
+                    if (butaca != null)
+                    {
+                        ReservasDTO reservaDTO = new ReservasDTO
+                        {
+                            IdReserva = reserva.IdReserva,
+                            IdButaca = reserva.IdButaca,
+                            Fila = butaca.Fila,
+                            NroButaca = butaca.NroButaca
+                        };
+
+                        token.Reservas.Add(reservaDTO);
+                    }
+                }
+
+
+
+                return token;
 
             }
             else
             {
-                return false;
+                return null;
             }
         }
     }

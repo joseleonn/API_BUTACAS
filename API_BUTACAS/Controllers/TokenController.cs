@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Model.DTO;
 using Service.IServices;
 
 namespace API_BUTACAS.Controllers
 {
+    [EnableCors("RulesCors")]
     [Route("api/[controller]")]
     [ApiController]
     public class TokenController : Controller
@@ -38,11 +41,11 @@ namespace API_BUTACAS.Controllers
         [Route("ValidarToken")]
         public IActionResult validToken(string token)
         {
-            bool response = _service.ValidateToken(token);
+            TokenDTO response = _service.ValidateToken(token);
 
-            if (response == true)
-            {
-                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Token admitido!." });
+            if (response != null)
+            {   
+                return StatusCode(StatusCodes.Status200OK, new { mensaje = "Token admitido!.", response});
 
             }
             else

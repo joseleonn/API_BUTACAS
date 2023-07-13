@@ -13,13 +13,9 @@ namespace Service.IServices
         List<Butacas> ObtenerButacasPorPlateaYFuncion(int idPlatea, int idFuncion);
 
         bool IsSeatReserved(int seatId);
-
-        //List<string> VerifyReserved(string token, List<SeatDTO> seats);
-
-        //List<Seat> showSeats();
-
         List<string> VerifyReserved(string token, List<SeatDTO> seats);
 
+        void DeleteAllFromReservas();
 
     }
 }

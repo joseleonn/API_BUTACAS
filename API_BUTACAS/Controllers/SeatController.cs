@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Model.DTO;
 using Model.Models;
 using Service.IServices;
 
 namespace API_BUTACAS.Controllers
 {
+    [EnableCors("RulesCors")]
     [Route("api/[controller]")]
     [ApiController]
     public class SeatController : Controller
@@ -34,7 +36,21 @@ namespace API_BUTACAS.Controllers
 
         }
 
+        [HttpDelete]
+        [Route("ElimiarTodasLasReservas")]
 
+        public IActionResult DeleteAll()
+        {
+            try {
+
+                _service.DeleteAllFromReservas();
+                return Ok();
+            
+            } catch
+            {
+                return BadRequest("No se pudo elimiar las reservas");
+            }
+        }
 
 
         [HttpGet]

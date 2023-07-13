@@ -22,7 +22,14 @@ builder.Services.AddDbContext<EstudioDeDanzasContext>(opt => opt.UseSqlServer(bu
 //Dependency Injection
 CompositeRoot.DependencyInjection(builder);
 
-
+//CORS
+var myRulesCors = "RulesCors";
+builder.Services.AddCors(opt => {
+    opt.AddPolicy(name: myRulesCors, builder =>
+    {
+        builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials(); ;
+    });
+});
 
 var app = builder.Build();
 
@@ -32,6 +39,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(myRulesCors);
 
 app.UseHttpsRedirection();
 
