@@ -24,7 +24,7 @@ namespace API_BUTACAS.Controllers
         {
             try
             {
-                List<string> results = _service.VerifyReserved(reser.token, reser.seats);
+                ReservadasYNoReservadasDTO results = _service.VerifyReserved(reser.token, reser.seats);
                 return Ok(results);
 
             }

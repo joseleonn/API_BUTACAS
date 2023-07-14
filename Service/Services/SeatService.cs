@@ -39,7 +39,7 @@ namespace Service.Services
         }
 
 
-        public List<string> VerifyReserved(string token, List<SeatDTO> seats)
+        public ReservadasYNoReservadasDTO VerifyReserved(string token, List<SeatDTO> seats)
         {
             Tokens tokenExist = _context.Tokens.FirstOrDefault(u => u.TokenCreated == token);
 
@@ -47,7 +47,8 @@ namespace Service.Services
             {
                 if (tokenExist.AssignedTickets != 0)
                 {
-                    List<string> results = new List<string>();
+                    List<int> reservadas = new List<int>();
+                    List<int> noReservadas = new List<int>();
                     List<Reservas> nuevasReservas = new List<Reservas>();
 
                     foreach (var seat in seats)
@@ -55,41 +56,35 @@ namespace Service.Services
                         // Obtener la butaca correspondiente al asiento
                         Butacas butacaExist = _context.Butacas.FirstOrDefault(b => b.IdButaca == seat.Id);
                         Reservas butacaReserved = _context.Reservas.FirstOrDefault(b => b.IdButaca == seat.Id);
-                        if(butacaExist == null)
-                        {
-                            results.Add($"El asiento {seat.Id} no existe, elija otro.");
 
+                        if (butacaExist == null)
+                        {
+                            noReservadas.Add(seat.Id);
+                        }
+                        else if (butacaReserved != null)
+                        {
+                            noReservadas.Add(seat.Id);
                         }
                         else
                         {
-                            if (butacaExist != null && butacaReserved != null)
-                            {
-                                results.Add($"El asiento {seat.Id} ya está reservado, elija otro.");
-                            }
-                            else
-                            {
-                                results.Add($"El asiento {seat.Id} se ha reservado a tu nombre.");
+                            reservadas.Add(seat.Id);
 
-                                // Se reserva la butaca
-                                butacaExist.Reservado = true;
+                            // Se reserva la butaca
+                            butacaExist.Reservado = true;
 
-                                // Se descuenta 1 entrada del token
-                                tokenExist.AssignedTickets -= 1;
+                            // Se descuenta 1 entrada del token
+                            tokenExist.AssignedTickets -= 1;
 
-                                // Se suma 1 entrada al token
-                                tokenExist.UsedTickets += 1;
+                            // Se suma 1 entrada al token
+                            tokenExist.UsedTickets += 1;
 
-                                // Se crea una nueva reserva y se agrega a la lista de nuevas reservas
-                                Reservas reserva = new Reservas();
-                                reserva.IdButaca = butacaExist.IdButaca; // Asignar el Id de la butaca reservada
-                                reserva.TokenCreated = tokenExist.TokenCreated; // Asignar el Id del token
-
-                                reserva.IdFuncion = butacaExist.IdFuncion;
-                                nuevasReservas.Add(reserva);
-                            }
-
+                            // Se crea una nueva reserva y se agrega a la lista de nuevas reservas
+                            Reservas reserva = new Reservas();
+                            reserva.IdButaca = butacaExist.IdButaca; // Asignar el Id de la butaca reservada
+                            reserva.TokenCreated = tokenExist.TokenCreated; // Asignar el Id del token
+                            reserva.IdFuncion = butacaExist.IdFuncion;
+                            nuevasReservas.Add(reserva);
                         }
-                
                     }
 
                     // Agregar todas las nuevas reservas a la tabla "Reservations"
@@ -105,7 +100,10 @@ namespace Service.Services
                     // Guardar los cambios en la base de datos
                     _context.SaveChanges();
 
-                    return results;
+                    ReservadasYNoReservadasDTO result = new ReservadasYNoReservadasDTO();
+                    result.reservadas = reservadas;
+                    result.noReservadas = noReservadas;
+                    return result;
                 }
                 else
                 {
