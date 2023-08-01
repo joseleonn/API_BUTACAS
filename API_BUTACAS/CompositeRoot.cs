@@ -10,6 +10,12 @@ namespace API_BUTACAS
 
             builder.Services.AddScoped<ISeatService, SeatService>();
 
+            builder.Services.AddScoped<IAdminService, AdminService>();
+
+            builder.Services.AddScoped<IMailService, MailService>();
+
+
+
         }
     }
 }

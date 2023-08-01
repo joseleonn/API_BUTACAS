@@ -1,4 +1,5 @@
 ﻿using Model.DTO;
+using Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Service.IServices
 
         TokenDTO ValidateToken(string tok);
 
+        List<Tokens> MostrarTokens();
 
+        bool EliminarToken(string token);
     }
 }

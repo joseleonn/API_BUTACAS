@@ -18,6 +18,8 @@ namespace Model.Models
         {
         }
 
+        public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Alumnos> Alumnos { get; set; }
         public virtual DbSet<Butacas> Butacas { get; set; }
         public virtual DbSet<Funcion> Funcion { get; set; }
         public virtual DbSet<Platea> Platea { get; set; }
@@ -26,6 +28,143 @@ namespace Model.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Admin>(entity =>
+            {
+                entity.HasKey(e => e.IdAdmin);
+
+                entity.Property(e => e.IdAdmin).ValueGeneratedNever();
+
+                entity.Property(e => e.Contrasena)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Usuario)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+            });
+
+            modelBuilder.Entity<Alumnos>(entity =>
+            {
+                entity.HasKey(e => e.IdAlumno);
+
+                entity.Property(e => e.AnioDeComienzo)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Apellido)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Barrio)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Celular)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.CelularEmergencia)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.CelularMadre)
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.CelularPadre)
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.DireccionMadre)
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.DireccionPadre)
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.DisciplinaQueCursa)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Dni)
+                    .IsRequired()
+                    .HasMaxLength(8)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Domicilio)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.EnCasoDeEmergenciaA)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.FechaDeNacimiento)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsFixedLength();
+
+                entity.Property(e => e.GrupoSanguineo)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MailAlumno)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MailMadre)
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.MailPadre)
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.NombreDeMadre)
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.NombreDePadre)
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.ObraSocial)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.ObservacionesFisicas)
+                    .HasMaxLength(255)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Parentesco)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+
+                entity.Property(e => e.Telefono)
+                    .HasMaxLength(50)
+                    .IsFixedLength();
+            });
+
             modelBuilder.Entity<Butacas>(entity =>
             {
                 entity.HasKey(e => e.IdButaca);

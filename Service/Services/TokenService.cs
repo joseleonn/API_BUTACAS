@@ -86,5 +86,37 @@ namespace Service.Services
                 return null;
             }
         }
+
+        public List<Tokens> MostrarTokens()
+        {
+
+            List<Tokens> tokens =_context.Tokens.ToList();
+
+            if (tokens != null)
+            {
+                return tokens;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool EliminarToken(string token)
+        {
+            Tokens tokenExiste = _context.Tokens.FirstOrDefault(u => u.TokenCreated == token);
+
+            if (tokenExiste != null)
+            {
+                _context.Tokens.Remove(tokenExiste);
+                _context.SaveChanges();
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

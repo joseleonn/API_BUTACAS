@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Model.DTO;
+using Model.Models;
 using Service.IServices;
+using System.Reflection.Metadata.Ecma335;
 
 namespace API_BUTACAS.Controllers
 {
@@ -57,5 +59,36 @@ namespace API_BUTACAS.Controllers
 
         }
 
+
+        [HttpGet]
+        [Route("MostrarTokens")]
+        public IActionResult MostrarTokens() {
+            try
+            {
+                List<Tokens> response = _service.MostrarTokens();
+                return Ok(response);
+            }
+            catch {
+                return BadRequest();
+            }
+
+        }
+
+        [HttpDelete]
+        [Route("/EliminarToken/{token}")]
+
+        public IActionResult EliminarAlumno(string token)
+        {
+            try
+            {
+                _service.EliminarToken(token);
+
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 }

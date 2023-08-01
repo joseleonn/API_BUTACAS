@@ -1,7 +1,10 @@
 using API_BUTACAS;
 using Microsoft.EntityFrameworkCore;
 using Model.Models;
+using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +25,29 @@ builder.Services.AddDbContext<EstudioDeDanzasContext>(opt => opt.UseSqlServer(bu
 //Dependency Injection
 CompositeRoot.DependencyInjection(builder);
 
+//Configuracion de JWT
+builder.Configuration.AddJsonFile("appsettings.json");
+var secretkey = builder.Configuration.GetSection("settings").GetSection("secretkey").ToString();
+var keyBytes = Encoding.UTF8.GetBytes(secretkey);
+
+builder.Services.AddAuthentication(config =>
+{
+    config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+}).AddJwtBearer(config =>
+{
+    config.RequireHttpsMetadata = false;
+    config.SaveToken = true;
+    config.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(keyBytes),
+        ValidateIssuer = false,
+        ValidateAudience = false,
+    };
+});
+////
 //CORS
 var myRulesCors = "RulesCors";
 builder.Services.AddCors(opt => {
@@ -43,6 +69,9 @@ if (app.Environment.IsDevelopment())
 app.UseCors(myRulesCors);
 
 app.UseHttpsRedirection();
+//AGREGAR ESTO PARA EL JWT TMB
+app.UseAuthentication();
+//
 
 app.UseAuthorization();
 
