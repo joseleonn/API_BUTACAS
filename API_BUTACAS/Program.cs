@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,18 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddSwaggerGen();
+
+
+//accedemos a azure key vault 
+var keyVaultURL = new Uri(builder.Configuration.GetSection("KeyVaultURL").Value!);
+var azureCredentials = new DefaultAzureCredential();
+builder.Configuration.AddAzureKeyVault(keyVaultURL, azureCredentials);
+
+var salt = builder.Configuration.GetSection("jwtvm").Value;
+var cs = builder.Configuration.GetSection("csvm").Value;
+
+builder.Services.AddDbContext<EstudioDeDanzasContext>(opt => opt.UseSqlServer(cs));
 
 
 
@@ -53,18 +65,18 @@ var myRulesCors = "RulesCors";
 builder.Services.AddCors(opt => {
     opt.AddPolicy(name: myRulesCors, builder =>
     {
-        builder.WithOrigins("http://localhost:3000").AllowAnyHeader().AllowAnyMethod().AllowCredentials(); ;
+        builder.WithOrigins("https://vivianamusso.vercel.app").AllowAnyHeader().AllowAnyMethod().AllowCredentials(); ;
     });
 });
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+    //app.UseSwagger();
+    //app.UseSwaggerUI();
+//}
 
 app.UseCors(myRulesCors);
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\API_BUTACAS\\API_BUTACAS.csproj": {}
+    "C:\\Users\\josec\\Desktop\\API_BUTACAS\\API_BUTACAS\\API_BUTACAS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\API_BUTACAS\\API_BUTACAS.csproj": {
+    "C:\\Users\\josec\\Desktop\\API_BUTACAS\\API_BUTACAS\\API_BUTACAS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\API_BUTACAS\\API_BUTACAS.csproj",
+        "projectUniqueName": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\API_BUTACAS\\API_BUTACAS.csproj",
         "projectName": "API_BUTACAS",
-        "projectPath": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\API_BUTACAS\\API_BUTACAS.csproj",
+        "projectPath": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\API_BUTACAS\\API_BUTACAS.csproj",
         "packagesPath": "C:\\Users\\josec\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\API_BUTACAS\\obj\\",
+        "outputPath": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\API_BUTACAS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\josec\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,11 +28,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Model\\Model.csproj": {
-                "projectPath": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Model\\Model.csproj"
+              "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Model\\Model.csproj"
               },
-              "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Service\\Service.csproj": {
-                "projectPath": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Service\\Service.csproj"
+              "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Service\\Service.csproj"
               }
             }
           }
@@ -47,6 +47,26 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Azure.Extensions.AspNetCore.Configuration.Secrets": {
+              "target": "Package",
+              "version": "[1.2.2, )"
+            },
+            "Azure.Extensions.AspNetCore.DataProtection.Blobs": {
+              "target": "Package",
+              "version": "[1.3.2, )"
+            },
+            "Azure.Identity": {
+              "target": "Package",
+              "version": "[1.9.0, )"
+            },
+            "Azure.Security.KeyVault.Secrets": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.102.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[6.0.20, )"
@@ -85,14 +105,14 @@
         }
       }
     },
-    "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Model\\Model.csproj": {
+    "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Model\\Model.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Model\\Model.csproj",
+        "projectUniqueName": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Model\\Model.csproj",
         "projectName": "Model",
-        "projectPath": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Model\\Model.csproj",
+        "projectPath": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Model\\Model.csproj",
         "packagesPath": "C:\\Users\\josec\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Model\\obj\\",
+        "outputPath": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Model\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\josec\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -152,14 +172,14 @@
         }
       }
     },
-    "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Service\\Service.csproj": {
+    "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Service\\Service.csproj",
+        "projectPath": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Service\\Service.csproj",
         "packagesPath": "C:\\Users\\josec\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Service\\obj\\",
+        "outputPath": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\josec\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -176,8 +196,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Model\\Model.csproj": {
-                "projectPath": "C:\\Users\\josec\\source\\repos\\API_BUTACAS\\Model\\Model.csproj"
+              "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Model\\Model.csproj": {
+                "projectPath": "C:\\Users\\josec\\Desktop\\API_BUTACAS\\Model\\Model.csproj"
               }
             }
           }

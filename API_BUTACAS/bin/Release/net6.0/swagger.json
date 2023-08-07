@@ -1,0 +1,419 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API_BUTACAS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Admin/IniciarSesionAdmin": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/LoginDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Admin/VerAlumnos": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Admin/CargarAlumnos": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/Alumnos"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Admin/EliminarAlumno/{id}": {
+      "delete": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mail/EnviarMail": {
+      "post": {
+        "tags": [
+          "Mail"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/EnviarMailDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Seat/Reservar": {
+      "post": {
+        "tags": [
+          "Seat"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/ReservedDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Seat/ElimiarTodasLasReservas": {
+      "delete": {
+        "tags": [
+          "Seat"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Seat/MostrarPlataBajaFuncion1": {
+      "get": {
+        "tags": [
+          "Seat"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Seat/MostrarPlataAltaFuncion1": {
+      "get": {
+        "tags": [
+          "Seat"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Seat/MostrarPlataBajaFuncion2": {
+      "get": {
+        "tags": [
+          "Seat"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Seat/MostrarPlataAltaFuncion2": {
+      "get": {
+        "tags": [
+          "Seat"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Token/CrearToken": {
+      "post": {
+        "tags": [
+          "Token"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Token/ValidarToken": {
+      "get": {
+        "tags": [
+          "Token"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "token",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Token/MostrarTokens": {
+      "get": {
+        "tags": [
+          "Token"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/EliminarToken/{token}": {
+      "delete": {
+        "tags": [
+          "Token"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Alumnos": {
+      "type": "object",
+      "properties": {
+        "idAlumno": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "apellido": {
+          "type": "string"
+        },
+        "mailAlumno": {
+          "type": "string"
+        },
+        "domicilio": {
+          "type": "string"
+        },
+        "barrio": {
+          "type": "string"
+        },
+        "celular": {
+          "type": "string"
+        },
+        "fechaDeNacimiento": {
+          "type": "string"
+        },
+        "dni": {
+          "type": "string"
+        },
+        "edad": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "obraSocial": {
+          "type": "string"
+        },
+        "grupoSanguineo": {
+          "type": "string"
+        },
+        "observacionesFisicas": {
+          "type": "string"
+        },
+        "nombreDeMadre": {
+          "type": "string"
+        },
+        "direccionMadre": {
+          "type": "string"
+        },
+        "celularMadre": {
+          "type": "string"
+        },
+        "mailMadre": {
+          "type": "string"
+        },
+        "nombreDePadre": {
+          "type": "string"
+        },
+        "direccionPadre": {
+          "type": "string"
+        },
+        "celularPadre": {
+          "type": "string"
+        },
+        "mailPadre": {
+          "type": "string"
+        },
+        "enCasoDeEmergenciaA": {
+          "type": "string"
+        },
+        "telefono": {
+          "type": "string"
+        },
+        "celularEmergencia": {
+          "type": "string"
+        },
+        "parentesco": {
+          "type": "string"
+        },
+        "disciplinaQueCursa": {
+          "type": "string"
+        },
+        "anioDeComienzo": {
+          "type": "string"
+        }
+      }
+    },
+    "EnviarMailDTO": {
+      "type": "object",
+      "properties": {
+        "mail": {
+          "type": "string"
+        },
+        "disciplina": {
+          "type": "string"
+        }
+      }
+    },
+    "LoginDTO": {
+      "type": "object",
+      "properties": {
+        "usuario": {
+          "type": "string"
+        },
+        "contrasena": {
+          "type": "string"
+        }
+      }
+    },
+    "ReservedDTO": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        },
+        "seats": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SeatDTO"
+          }
+        }
+      }
+    },
+    "SeatDTO": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

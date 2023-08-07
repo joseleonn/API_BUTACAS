@@ -26,7 +26,7 @@ namespace Service.Services
         public AdminService(EstudioDeDanzasContext context, IConfiguration config, IMailService mailService)
         {
             _dbcontext = context;
-            secretKey = config.GetSection("settings").GetSection("secretkey").ToString();
+            secretKey = config.GetSection("jwtvm").Value;
             _mailService = mailService;
         }
 
